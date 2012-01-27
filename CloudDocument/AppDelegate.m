@@ -3,27 +3,30 @@
 //  CloudDocument
 //
 //  Created by Hoshi Takanori on 12/01/28.
-//  Copyright (c) 2012年 -. All rights reserved.
+//  Copyright (c) 2012 -. All rights reserved.
 //
 
 #import "AppDelegate.h"
+#import "EditViewController.h"
 
-@implementation AppDelegate
-
-@synthesize window = _window;
-
-- (void)dealloc
-{
-    [_window release];
-    [super dealloc];
+@implementation AppDelegate {
+    UIWindow *window;
+    UINavigationController *navigationController;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
+    EditViewController *viewController = [[EditViewController alloc] init];
+    navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    [viewController release];
+
+    window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    if ([window respondsToSelector:@selector(setRootViewController:)]) {
+        window.rootViewController = navigationController;
+    } else {
+        [window addSubview:navigationController.view];
+    }
+    [window makeKeyAndVisible];
     return YES;
 }
 
@@ -38,7 +41,7 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     /*
-     Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+     Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      */
 }
@@ -64,6 +67,13 @@
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
+}
+
+- (void)dealloc
+{
+    [window release];
+    [navigationController release];
+    [super dealloc];
 }
 
 @end

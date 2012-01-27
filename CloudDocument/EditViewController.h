@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  EditViewController.h
 //  CloudDocument
 //
 //  Created by Hoshi Takanori on 12/01/28.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface EditViewController : UIViewController
 
 @end

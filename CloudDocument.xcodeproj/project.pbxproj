@@ -13,6 +13,10 @@
 		8D8CA44414D3050D0008223D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8D8CA44214D3050D0008223D /* InfoPlist.strings */; };
 		8D8CA44614D3050D0008223D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D8CA44514D3050D0008223D /* main.m */; };
 		8D8CA44A14D3050D0008223D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D8CA44914D3050D0008223D /* AppDelegate.m */; };
+		8D8CA45314D306300008223D /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D8CA45214D306300008223D /* EditViewController.m */; };
+		8D8CA45614D306500008223D /* LoadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D8CA45514D306500008223D /* LoadViewController.m */; };
+		8D8CA45914D306700008223D /* CloudDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D8CA45814D306700008223D /* CloudDocument.m */; };
+		8D8CA45C14D3068A0008223D /* SimpleHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D8CA45B14D306890008223D /* SimpleHUD.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,12 +24,21 @@
 		8D8CA43914D3050D0008223D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8D8CA43B14D3050D0008223D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8D8CA43D14D3050D0008223D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		8D8CA44114D3050D0008223D /* CloudDocument-Info.plist */ = {isa = PBXFileReference; path = "CloudDocument-Info.plist"; sourceTree = "<group>"; };
+		8D8CA44114D3050D0008223D /* CloudDocument-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CloudDocument-Info.plist"; sourceTree = "<group>"; };
 		8D8CA44314D3050D0008223D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8D8CA44514D3050D0008223D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		8D8CA44714D3050D0008223D /* CloudDocument-Prefix.pch */ = {isa = PBXFileReference; path = "CloudDocument-Prefix.pch"; sourceTree = "<group>"; };
-		8D8CA44814D3050D0008223D /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		8D8CA44714D3050D0008223D /* CloudDocument-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CloudDocument-Prefix.pch"; sourceTree = "<group>"; };
+		8D8CA44814D3050D0008223D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8D8CA44914D3050D0008223D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		8D8CA45014D3056B0008223D /* CloudDocument.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CloudDocument.entitlements; sourceTree = "<group>"; };
+		8D8CA45114D306300008223D /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
+		8D8CA45214D306300008223D /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
+		8D8CA45414D306500008223D /* LoadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadViewController.h; sourceTree = "<group>"; };
+		8D8CA45514D306500008223D /* LoadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadViewController.m; sourceTree = "<group>"; };
+		8D8CA45714D306700008223D /* CloudDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloudDocument.h; sourceTree = "<group>"; };
+		8D8CA45814D306700008223D /* CloudDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloudDocument.m; sourceTree = "<group>"; };
+		8D8CA45A14D306890008223D /* SimpleHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleHUD.h; sourceTree = "<group>"; };
+		8D8CA45B14D306890008223D /* SimpleHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleHUD.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +87,14 @@
 			children = (
 				8D8CA44814D3050D0008223D /* AppDelegate.h */,
 				8D8CA44914D3050D0008223D /* AppDelegate.m */,
+				8D8CA45114D306300008223D /* EditViewController.h */,
+				8D8CA45214D306300008223D /* EditViewController.m */,
+				8D8CA45414D306500008223D /* LoadViewController.h */,
+				8D8CA45514D306500008223D /* LoadViewController.m */,
+				8D8CA45714D306700008223D /* CloudDocument.h */,
+				8D8CA45814D306700008223D /* CloudDocument.m */,
+				8D8CA45A14D306890008223D /* SimpleHUD.h */,
+				8D8CA45B14D306890008223D /* SimpleHUD.m */,
 				8D8CA44014D3050D0008223D /* Supporting Files */,
 			);
 			path = CloudDocument;
@@ -82,6 +103,7 @@
 		8D8CA44014D3050D0008223D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8D8CA45014D3056B0008223D /* CloudDocument.entitlements */,
 				8D8CA44114D3050D0008223D /* CloudDocument-Info.plist */,
 				8D8CA44214D3050D0008223D /* InfoPlist.strings */,
 				8D8CA44514D3050D0008223D /* main.m */,
@@ -154,6 +176,10 @@
 			files = (
 				8D8CA44614D3050D0008223D /* main.m in Sources */,
 				8D8CA44A14D3050D0008223D /* AppDelegate.m in Sources */,
+				8D8CA45314D306300008223D /* EditViewController.m in Sources */,
+				8D8CA45614D306500008223D /* LoadViewController.m in Sources */,
+				8D8CA45914D306700008223D /* CloudDocument.m in Sources */,
+				8D8CA45C14D3068A0008223D /* SimpleHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,7 +201,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -190,7 +219,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -199,7 +228,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -207,7 +239,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -217,6 +249,7 @@
 		8D8CA44E14D3050D0008223D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = CloudDocument/CloudDocument.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CloudDocument/CloudDocument-Prefix.pch";
 				INFOPLIST_FILE = "CloudDocument/CloudDocument-Info.plist";
@@ -228,6 +261,7 @@
 		8D8CA44F14D3050D0008223D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = CloudDocument/CloudDocument.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CloudDocument/CloudDocument-Prefix.pch";
 				INFOPLIST_FILE = "CloudDocument/CloudDocument-Info.plist";
