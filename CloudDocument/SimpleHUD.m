@@ -21,20 +21,16 @@
 @implementation SimpleHUD
 
 static SimpleHUD *sharedHUD;
-static UIWindow *previousKeyWindow;
 
 + (void)show
 {
     if (sharedHUD == nil) {
-        for (UIWindow *window in [UIApplication sharedApplication].windows) {
-            if (window.windowLevel == UIWindowLevelNormal) {
-                previousKeyWindow = window;
-            }
-        }
-
         sharedHUD = [[SimpleHUD alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        sharedHUD.windowLevel = UIWindowLevelAlert;
         sharedHUD.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        [sharedHUD makeKeyAndVisible];
+
+        sharedHUD.hidden = NO;
+
         [sharedHUD performSelector:@selector(start) withObject:nil afterDelay:HUD_DELAY];
     }
 }
@@ -44,8 +40,7 @@ static UIWindow *previousKeyWindow;
     if (sharedHUD != nil) {
         [NSObject cancelPreviousPerformRequestsWithTarget:sharedHUD selector:@selector(start) object:nil];
 
-        [previousKeyWindow makeKeyWindow];
-        previousKeyWindow = nil;
+        sharedHUD.hidden = YES;
 
         [sharedHUD release];
         sharedHUD = nil;
@@ -68,8 +63,8 @@ static CGRect center_rect(CGRect bounds, CGFloat width, CGFloat height)
                                UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     [self addSubview:hudView];
 
-    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithFrame:hudView.bounds];
-    spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    spinner.center = CGPointMake(HUD_WIDTH / 2, HUD_HEIGHT / 2);
     [hudView addSubview:spinner];
 
     [spinner startAnimating];
