@@ -8,6 +8,7 @@
 
 #import "LoadViewController.h"
 #import "CloudDocument.h"
+#import "SimpleHUD.h"
 
 #define KEY_ISCLOUD @"isCloud"
 
@@ -17,6 +18,10 @@
 #define INDEX_CLOUD 1
 
 #define INDEX_OK    1
+
+// uncomment to test SimpleHUD on open/save as local files.
+//#define LOCAL_OPEN_DELAY 5
+//#define LOCAL_SAVE_DELAY 5
 
 @interface LoadViewController () <UITextFieldDelegate, UIAlertViewDelegate> {
     UITextField *textField;
@@ -37,6 +42,7 @@
 
 - (NSArray *)fileItems;
 - (BOOL)deletePath:(NSString *)path;
+- (void)openPath:(NSString *)path;
 - (void)saveAs:(NSString *)filename path:(NSString *)path;
 - (void)saveAsPath:(NSString *)path;
 
@@ -64,7 +70,8 @@
         UIView *view = [[UIView alloc] initWithFrame:frame];
         view.backgroundColor = [UIColor groupTableViewBackgroundColor];
 
-        textField = [[UITextField alloc] initWithFrame:CGRectMake(8, 8, 240, 31)];
+        textField = [[UITextField alloc] initWithFrame:CGRectMake(8, 8, view.bounds.size.width - 56 - 3 * 8, 31)];
+        textField.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
         textField.borderStyle = UITextBorderStyleRoundedRect;
         textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         textField.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -73,7 +80,8 @@
         [view addSubview:textField];
 
         saveButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
-        saveButton.frame = CGRectMake(256, 8, 56, 31);
+        saveButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
+        saveButton.frame = CGRectMake(view.bounds.size.width - 56 - 8, 8, 56, 31);
         [saveButton setTitle:@"Save" forState:UIControlStateNormal];
         [saveButton setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
         [saveButton addTarget:self action:@selector(handleSave:) forControlEvents:UIControlEventTouchUpInside];
@@ -273,7 +281,7 @@ static NSString *get_name(id obj)
             [tableView deselectRowAtIndexPath:indexPath animated:YES];
             [self saveAs:get_name(obj) path:obj];
         } else {
-            [self closeWithData:[NSData dataWithContentsOfFile:obj]];
+            [self openPath:obj];
         }
     } else if ([obj isKindOfClass:[NSURL class]]) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -398,6 +406,21 @@ static NSInteger compare(id obj1, id obj2, void *context)
     return result;
 }
 
+-(void)openPath:(NSString *)path
+{
+#ifdef LOCAL_OPEN_DELAY
+    [SimpleHUD show];
+    [self performSelector:@selector(openLater:) withObject:path afterDelay:LOCAL_OPEN_DELAY];
+}
+
+- (void)openLater:(NSString *)path
+{
+    [SimpleHUD dismiss];
+#endif
+
+    [self closeWithData:[NSData dataWithContentsOfFile:path]];
+}
+
 - (void)saveAs:(NSString *)filename path:(NSString *)path
 {
     if (path == nil) {
@@ -418,6 +441,16 @@ static NSInteger compare(id obj1, id obj2, void *context)
 
 - (void)saveAsPath:(NSString *)path
 {
+#ifdef LOCAL_SAVE_DELAY
+    [SimpleHUD show];
+    [self performSelector:@selector(saveLater:) withObject:path afterDelay:LOCAL_SAVE_DELAY];
+}
+
+- (void)saveLater:(NSString *)path
+{
+    [SimpleHUD dismiss];
+#endif
+
     NSError *error = nil;
     if ([[delegate dataToSave] writeToFile:path options:NSDataWritingAtomic error:&error]) {
         [self closeWithData:nil];
@@ -522,7 +555,7 @@ static NSInteger compare(id obj1, id obj2, void *context)
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return YES;
 }
 
 - (void)viewDidUnload

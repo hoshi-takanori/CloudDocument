@@ -26,8 +26,8 @@ static SimpleHUD *sharedHUD;
 {
     if (sharedHUD == nil) {
         sharedHUD = [[SimpleHUD alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        sharedHUD.windowLevel = UIWindowLevelAlert;
         sharedHUD.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        sharedHUD.windowLevel = UIWindowLevelAlert;
 
         sharedHUD.hidden = NO;
 
@@ -57,10 +57,10 @@ static CGRect center_rect(CGRect bounds, CGFloat width, CGFloat height)
 - (void)start
 {
     UIView *hudView = [[UIView alloc] initWithFrame:center_rect(self.bounds, HUD_WIDTH, HUD_HEIGHT)];
-    hudView.layer.cornerRadius = HUD_CORNER;
-    hudView.backgroundColor = [UIColor colorWithWhite:0 alpha:HUD_ALPHA];
     hudView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin |
                                UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+    hudView.backgroundColor = [UIColor colorWithWhite:0 alpha:HUD_ALPHA];
+    hudView.layer.cornerRadius = HUD_CORNER;
     [self addSubview:hudView];
 
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];

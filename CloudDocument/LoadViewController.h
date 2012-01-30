@@ -10,7 +10,7 @@
 
 @protocol LoadViewDelegate <NSObject>
 
-- (void)loadData:(id)data;
+- (void)loadData:(NSData *)data;
 - (NSData *)dataToSave;
 
 @end

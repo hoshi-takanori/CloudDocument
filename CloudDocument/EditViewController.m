@@ -18,13 +18,23 @@
 
 @implementation EditViewController
 
+- (CGRect)textViewFrameForOrientation:(UIInterfaceOrientation)orientation
+{
+    if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown) {
+        return CGRectMake(8, 8, 304, 184);
+    } else {
+        return CGRectMake(8, 8, 464, 90);
+    }
+}
+
 - (void)loadView
 {
     CGRect frame = [UIScreen mainScreen].applicationFrame;
     UIView *view = [[UIView alloc] initWithFrame:frame];
     view.backgroundColor = [UIColor groupTableViewBackgroundColor];
 
-    textView = [[UITextView alloc] initWithFrame:CGRectMake(8, 8, 304, 184)];
+    textView = [[UITextView alloc] initWithFrame:[self textViewFrameForOrientation:self.interfaceOrientation]];
+    textView.font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
     [view addSubview:textView];
 
     self.view = view;
@@ -59,6 +69,8 @@
     if (! isOpened) {
         [textView becomeFirstResponder];
         isOpened = YES;
+    } else {
+        textView.frame = [self textViewFrameForOrientation:self.interfaceOrientation];
     }
 }
 
@@ -83,7 +95,7 @@
     [self openLoadView:YES];
 }
 
-- (void)loadData:(id)data
+- (void)loadData:(NSData *)data
 {
     NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     textView.text = string;
@@ -97,7 +109,23 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return YES;
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+
+    if ([UIView respondsToSelector:@selector(animateWithDuration:animations:)]) {
+        [UIView animateWithDuration:duration animations:^{
+            textView.frame = [self textViewFrameForOrientation:toInterfaceOrientation];
+        }];
+    } else {
+        [UIView beginAnimations:@"orientation" context:NULL];
+        [UIView setAnimationDuration:duration];
+        textView.frame = [self textViewFrameForOrientation:toInterfaceOrientation];
+        [UIView commitAnimations];
+    }
 }
 
 - (void)viewDidUnload

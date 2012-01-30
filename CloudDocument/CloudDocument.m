@@ -17,9 +17,9 @@
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:nil];
-        [coordinator coordinateWritingItemAtURL:url options:NSFileCoordinatorWritingForDeleting error:nil byAccessor:^(NSURL *newURL) {
+        [coordinator coordinateWritingItemAtURL:url options:NSFileCoordinatorWritingForDeleting error:NULL byAccessor:^(NSURL *newURL) {
             NSFileManager *fileManager = [[NSFileManager alloc] init];
-            [fileManager removeItemAtURL:newURL error:nil];
+            [fileManager removeItemAtURL:newURL error:NULL];
             [fileManager release];
         }];
         [coordinator release];
@@ -70,7 +70,7 @@
 - (void)changeData:(NSData *)newData
 {
     if (self.documentState & UIDocumentStateInConflict) {
-        [NSFileVersion removeOtherVersionsOfItemAtURL:self.fileURL error:nil];
+        [NSFileVersion removeOtherVersionsOfItemAtURL:self.fileURL error:NULL];
         for (NSFileVersion* version in [NSFileVersion unresolvedConflictVersionsOfItemAtURL:self.fileURL]) {
             version.resolved = YES;
         }
