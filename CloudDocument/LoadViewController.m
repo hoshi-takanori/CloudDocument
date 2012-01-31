@@ -211,6 +211,8 @@
 
 - (void)handleCloud:(id)sender
 {
+    self.editing = NO;
+
     isCloud = (((UISegmentedControl *) sender).selectedSegmentIndex == INDEX_CLOUD);
     if (! isCloud) {
         [query stopQuery];
@@ -567,6 +569,8 @@ static NSInteger compare(id obj1, id obj2, void *context)
 
 - (void)dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+
     [items release];
     [textField release];
     [saveButton release];
